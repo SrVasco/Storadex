@@ -1,5 +1,6 @@
 package com.example.storadex.navigation
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -20,8 +21,10 @@ import com.example.storadex.views.AlbumScreen
 import com.example.storadex.views.CardsScreen
 import com.example.storadex.views.HomeScreen
 import com.example.storadex.views.LoginScreen
+import com.example.storadex.views.OpeningScreen
 import com.example.storadex.views.UserScreen
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AppNavigation(
     loginViewModelParameter: LoginScreenViewModel,
@@ -44,7 +47,8 @@ fun AppNavigation(
                 bottomBar = { if (showBottomBar) BottomBar(navController) }
             ) { innerPadding: PaddingValues ->
                 HomeScreen(
-                    navController = navController
+                    navController = navController,
+
                 )
             }
         }
@@ -102,5 +106,19 @@ fun AppNavigation(
             val userViewModelInstance: UserViewModel = viewModel()
             UserScreen(navController = navController, userViewModel = userViewModelInstance)
         }
+        composable("simulator") {
+            showBottomBar = false
+            Scaffold(
+                bottomBar = { if (showBottomBar) BottomBar(navController) }
+            ) { innerPadding: PaddingValues ->
+                OpeningScreen(
+                    navController = navController,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                )
+            }
+        }
+
     }
 }

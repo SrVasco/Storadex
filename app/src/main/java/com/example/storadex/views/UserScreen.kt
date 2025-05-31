@@ -28,7 +28,6 @@ fun UserScreen(
     // Obtenemos el usuario actual
     val userData by userViewModel.userData.collectAsState()
 
-    // 👇 Esto asegura que solo se llame una vez al cargar la pantalla
     LaunchedEffect(Unit) {
         userViewModel.loadUserData()
     }

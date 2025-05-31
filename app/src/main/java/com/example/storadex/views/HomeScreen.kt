@@ -46,6 +46,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -66,7 +67,7 @@ fun HomeScreen(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(MaterialTheme.colorScheme.background),
+                .background(colorResource(id = R.color.baseblue)),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -126,7 +127,9 @@ fun HomeScreen(
                         ),
                         modifier = Modifier
                             .aspectRatio(1f)
-                            .clickable { /* TODO: navega a opening simulator */ }
+                            .clickable {
+                                navController.navigate("simulator")
+                            }
                     )
                 }
             }
@@ -147,15 +150,15 @@ private fun MainTopAppBar(navController: NavController) {
                 Icon(
                     imageVector = Icons.Default.AccountCircle,
                     contentDescription = "Perfil de usuario",
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    tint = colorResource(id = R.color.pikayelow),
                     modifier = Modifier.size(32.dp)
                 )
             }
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = colorResource(id = R.color.detailblue),
             titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+            actionIconContentColor = colorResource(id = R.color.detailblue)
         )
     )
 }
@@ -163,8 +166,8 @@ private fun MainTopAppBar(navController: NavController) {
 @Composable
 private fun BentoBoxItem(item: BentoItem, modifier: Modifier = Modifier) {
     val containerColor = when (item.size) {
-        BentoSize.LARGE -> MaterialTheme.colorScheme.primaryContainer
-        else -> MaterialTheme.colorScheme.secondaryContainer
+        BentoSize.LARGE -> colorResource(id = R.color.detailblue)
+        else -> colorResource(id = R.color.detailblue)
     }
 
     Card(
@@ -184,7 +187,7 @@ private fun BentoBoxItem(item: BentoItem, modifier: Modifier = Modifier) {
                     imageVector = item.icon,
                     contentDescription = item.title,
                     modifier = Modifier.size(40.dp),
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    tint = colorResource(id = R.color.pikayelow)
                 )
                 Text(
                     text = item.title,

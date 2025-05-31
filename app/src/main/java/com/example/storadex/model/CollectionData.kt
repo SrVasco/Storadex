@@ -1,8 +1,8 @@
 package com.example.storadex.model
 
 data class CollectionData(
-    val id: String = "", // Añade valor por defecto
-    val name: String = "", // Añade valor por defecto
+    val id: String = "",
+    val name: String = "",
     val cards: List<CardData> = emptyList()
 )
 
